@@ -1,0 +1,526 @@
+zabbix_export:
+  version: '6.0'
+  date: '2025-01-23T11:05:12Z'
+  groups:
+    - uuid: 39f72559f98a45b2954a6b820fb643aa
+      name: DEVA
+  templates:
+    - uuid: 9df366dbe31e4b44b53865e7c8af2551
+      template: 'DEVA DB44'
+      name: 'DEVA DB44'
+      description: |
+        DEVA DB44 - Compact FM Radio Monitoring Receiver
+        
+        https://www.devabroadcast.com/products/db44
+      templates:
+        - name: 'Generic SNMP'
+      groups:
+        - name: DEVA
+      items:
+        - uuid: cbbb5e4b2dc1416eaad550d1a79734c8
+          name: De-emphasis
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.35833.5.2.7.2.0
+          key: deva.managment.deemph
+          delay: 1h
+          description: De-emphasis.
+          valuemap:
+            name: De-emphasis
+          tags:
+            - tag: component
+              value: managment
+        - uuid: d536614e0a444307a9ced820f88951ba
+          name: 'RDS Decoding Mode'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.35833.5.2.7.3.0
+          key: deva.managment.rds_mode
+          delay: 1h
+          description: 'RDS Decoding Mode.'
+          valuemap:
+            name: 'RDS Decoding Mode'
+          tags:
+            - tag: component
+              value: managment
+        - uuid: 1459d9191130417b9081f7eef2765722
+          name: 'RF Attenuator'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.35833.5.2.7.1.0
+          key: deva.managment.rf_attenuator
+          delay: 1h
+          description: 'Get RF Attenuator.'
+          valuemap:
+            name: 'RF Attenuator'
+          tags:
+            - tag: component
+              value: managment
+        - uuid: 9ed3075a45c1463591ca62184a04188c
+          name: 'Left channel Level'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.35833.5.3.8.0
+          key: deva.monitor.chan_llvl
+          history: 30d
+          value_type: FLOAT
+          units: dB
+          description: 'Left channel Level, [dB].'
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: component
+              value: monitoring
+            - tag: component
+              value: 'monitoring channels'
+        - uuid: 6ea0303a82f0436fb83e116fc77bda2e
+          name: 'Left-Right channel Level'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.35833.5.3.11.0
+          key: deva.monitor.chan_lm_rlvl
+          history: 30d
+          value_type: FLOAT
+          units: dB
+          description: 'Left-Right channel Level, [dB].'
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: component
+              value: monitoring
+            - tag: component
+              value: 'monitoring channels'
+        - uuid: 7b45fd08490a431290219abcb66ab0a4
+          name: 'Left+Right channel Level'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.35833.5.3.10.0
+          key: deva.monitor.chan_lp_rlvl
+          history: 30d
+          value_type: FLOAT
+          units: dB
+          description: 'Left+Right channel Level, [dB].'
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: component
+              value: monitoring
+            - tag: component
+              value: 'monitoring channels'
+        - uuid: d838b54b09a94d0ba892eaa996ebed19
+          name: 'Right channel Level'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.35833.5.3.9.0
+          key: deva.monitor.chan_rlvl
+          history: 30d
+          value_type: FLOAT
+          units: dB
+          description: 'Right channel Level, [dB].'
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: component
+              value: monitoring
+            - tag: component
+              value: 'monitoring channels'
+        - uuid: 8839bfac2f6744afb42ab31cac9f0f00
+          name: Multipath
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.35833.5.3.3.0
+          key: deva.monitor.mpath
+          history: 30d
+          value_type: FLOAT
+          units: '%'
+          description: 'Multipath, [%]'
+          tags:
+            - tag: component
+              value: monitoring
+        - uuid: ebcda72716214816ae66a12cef851ad0
+          name: 'MPX Deviation'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.35833.5.3.6.0
+          key: deva.monitor.mpx_dev
+          history: 30d
+          value_type: FLOAT
+          units: kHz
+          description: 'MPX Deviation, [kHz].'
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: component
+              value: monitoring
+            - tag: component
+              value: MPX
+        - uuid: 69cd1a9c70a74f2e84aa735e5bc88a3f
+          name: 'MPX Power'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.35833.5.3.7.0
+          key: deva.monitor.mpx_power
+          history: 30d
+          value_type: FLOAT
+          units: dBr
+          description: 'MPX Power, [dBr].'
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: component
+              value: monitoring
+            - tag: component
+              value: MPX
+        - uuid: b4c4aeee0454437f80b8a7ca0f24beef
+          name: 'Negative MPX Deviation'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.35833.5.3.5.0
+          key: deva.monitor.neg_dev
+          history: 30d
+          value_type: FLOAT
+          units: kHz
+          description: 'Negative MPX Deviation, [kHz].'
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: component
+              value: monitoring
+            - tag: component
+              value: MPX
+        - uuid: 5f6f343511094947bbdfe9fbb0306f9c
+          name: 'Pilot Level'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.35833.5.3.12.0
+          key: deva.monitor.pilot_lvl
+          history: 30d
+          value_type: FLOAT
+          units: kHz
+          description: 'Pilot Level, [kHz].'
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: component
+              value: monitoring
+        - uuid: 91534c08c0794a40a2449856220a0ab2
+          name: 'Positive MPX Deviation'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.35833.5.3.4.0
+          key: deva.monitor.pos_dev
+          history: 30d
+          value_type: FLOAT
+          units: kHz
+          description: 'Positive MPX Deviation, [kHz].'
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: component
+              value: monitoring
+            - tag: component
+              value: MPX
+        - uuid: 9f0404415b28461dbe9f3acaf0de69c8
+          name: 'RDS Level'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.35833.5.3.13.0
+          key: deva.monitor.rds_lvl
+          history: 30d
+          value_type: FLOAT
+          units: kHz
+          description: 'RDS Level, [kHz].'
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: component
+              value: monitoring
+        - uuid: e61f45c1f96e4d2890a2ab564997ac04
+          name: 'RF Level'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.35833.5.3.2.0
+          key: deva.monitor.rf_lvl
+          history: 30d
+          value_type: FLOAT
+          units: dBuV
+          description: 'RF Level, [dBuV].'
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: component
+              value: monitoring
+        - uuid: 64352a24419f480499a129af03385738
+          name: 'Tuner Frequency'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.35833.5.3.1.0
+          key: deva.monitor.tuner_freq
+          history: 30d
+          value_type: FLOAT
+          units: kHz
+          description: 'Get Current Tuner Frequency, [kHz].'
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.001'
+          tags:
+            - tag: component
+              value: monitoring
+        - uuid: 7e301c99cfeb4f7690f4acb9eea6299f
+          name: 'RDS Music/Speech flag'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.35833.5.3.20.0
+          key: deva.monitoring.rdsms
+          history: 30d
+          trends: '0'
+          description: |
+            RDS Music/Speech flag
+            notRecived(0)
+            off(1)
+            on(2)
+          valuemap:
+            name: 'RDS Music/Speech flag'
+          tags:
+            - tag: component
+              value: monitoring
+            - tag: component
+              value: RDS
+        - uuid: 8b1bd8b5599946128051de90a80646d3
+          name: 'RDS Program station name RDP PS'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.35833.5.3.16.0
+          key: deva.monitoring.rdsps
+          delay: 10m
+          history: 30d
+          trends: '0'
+          value_type: TEXT
+          description: 'RDS Program station name'
+          tags:
+            - tag: component
+              value: monitoring
+            - tag: component
+              value: RDS
+        - uuid: 0378bbf5e1854ecf9b158651e46e6153
+          name: 'RDS Radio test RDS RT'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.35833.5.3.17.0
+          key: deva.monitoring.rdsrt
+          delay: 10m
+          history: 30d
+          trends: '0'
+          value_type: TEXT
+          description: 'RDS Radio test'
+          tags:
+            - tag: component
+              value: monitoring
+            - tag: component
+              value: RDS
+        - uuid: 88aff658a9c74851a93efc8a325b5bf6
+          name: 'RDS Program type'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.35833.5.3.21.0
+          key: deva.monitoring.rdsty
+          history: 30d
+          trends: '0'
+          value_type: TEXT
+          description: 'RDS Program type'
+          tags:
+            - tag: component
+              value: monitoring
+            - tag: component
+              value: RDS
+        - uuid: 41aa9a9e6f5b467aa00ae815776eabe2
+          name: 'RDS Lock flag'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.35833.5.3.18.0
+          key: deva.monitoring.rds_lock
+          history: 30d
+          trends: '0'
+          description: |
+            RDS Lock flag
+            noLock(0)
+            rdsLock(1)
+          valuemap:
+            name: 'RDS Lock flag'
+          tags:
+            - tag: component
+              value: monitoring
+            - tag: component
+              value: RDS
+        - uuid: 0eeecce85cc141cbb32138af599ae793
+          name: 'RDS PI code'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.35833.5.3.15.0
+          key: deva.monitoring.rds_pi
+          delay: 10m
+          history: 30d
+          trends: '0'
+          value_type: TEXT
+          description: 'RDS PI code'
+          tags:
+            - tag: component
+              value: monitoring
+            - tag: component
+              value: RDS
+        - uuid: a8120acd9a7a4faa98f963e7520bac58
+          name: 'RDS TA flag'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.35833.5.3.18.0
+          key: deva.monitoring.rds_ta
+          history: 30d
+          trends: '0'
+          description: |
+            RDS TA flag
+            notRecived(0)
+            off(1)
+            on(2)
+          valuemap:
+            name: 'RDS flag'
+          tags:
+            - tag: component
+              value: monitoring
+            - tag: component
+              value: RDS
+        - uuid: 02bc2d2c132f4be08a8e4dd1ed5ad3e8
+          name: 'RDS TP flag'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.35833.5.3.19.0
+          key: deva.monitoring.rds_tp
+          history: 30d
+          trends: '0'
+          description: |
+            RDS TP flag
+            notRecived(0)
+            off(1)
+            on(2)
+          valuemap:
+            name: 'RDS flag'
+          tags:
+            - tag: component
+              value: monitoring
+            - tag: component
+              value: RDS
+        - uuid: febfb4089274401aa2e1a77b4eae67dc
+          name: 'Stereo indicator flag'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.35833.5.3.24.0
+          key: deva.monitoring.stereo_flag
+          history: 30d
+          trends: '0'
+          description: |
+            Stereo indicator flag
+            mono(0)
+            stereo(1)
+          valuemap:
+            name: 'Stereo indicator flag'
+          tags:
+            - tag: component
+              value: monitoring
+            - tag: component
+              value: RDS
+        - uuid: 3aa6286796cb4d1bb6d80b2c58313d00
+          name: 'Device ID'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.35833.5.1.1.0
+          key: deva.product.deviceid
+          delay: 1h
+          trends: '0'
+          value_type: TEXT
+          description: 'Device identification string'
+          inventory_link: ALIAS
+          tags:
+            - tag: component
+              value: system
+        - uuid: 0b2370025bb549f08bf2b9f9a148af1d
+          name: 'Device revision'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.35833.5.1.3.0
+          key: deva.product.revision
+          delay: 1h
+          trends: '0'
+          value_type: TEXT
+          description: 'MIB revision'
+          inventory_link: SOFTWARE
+          tags:
+            - tag: component
+              value: system
+        - uuid: f5525c29237d4f928c26687b26f3556b
+          name: 'Serial Number'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.35833.5.1.2.0
+          key: deva.product.sn
+          delay: 1h
+          trends: '0'
+          value_type: TEXT
+          description: 'Device Serial Number'
+          inventory_link: SERIALNO_A
+          tags:
+            - tag: component
+              value: system
+      valuemaps:
+        - uuid: 95323cba880e432bab2322e78d95f082
+          name: De-emphasis
+          mappings:
+            - value: '0'
+              newvalue: us50
+            - value: '1'
+              newvalue: us75
+        - uuid: 01693d18d07e41d9a8e7d5fcda0c55a7
+          name: 'RDS Decoding Mode'
+          mappings:
+            - value: '0'
+              newvalue: rds
+            - value: '1'
+              newvalue: rbds
+        - uuid: bc8dcf8cf3de4cf5b3e6ff4422bf22db
+          name: 'RDS flag'
+          mappings:
+            - value: '0'
+              newvalue: notRecived
+            - value: '1'
+              newvalue: 'off'
+            - value: '2'
+              newvalue: 'on'
+        - uuid: 5aaa68f3d96541b9948936f1c157e1bc
+          name: 'RDS Lock flag'
+          mappings:
+            - value: '0'
+              newvalue: noLock
+            - value: '1'
+              newvalue: rdsLock
+        - uuid: f7c71751a375420eb31f941edf0bb5da
+          name: 'RDS Music/Speech flag'
+          mappings:
+            - value: '0'
+              newvalue: notRecived
+            - value: '1'
+              newvalue: speech
+            - value: '2'
+              newvalue: music
+        - uuid: 0baf23418fa6427fb6f97e91ff47dfc8
+          name: 'RF Attenuator'
+          mappings:
+            - value: '0'
+              newvalue: 'off'
+            - value: '10'
+              newvalue: db10
+            - value: '20'
+              newvalue: db20
+            - value: '30'
+              newvalue: db30
+            - value: '40'
+              newvalue: auto
+        - uuid: b843664428654af28b0fcfa2c481471e
+          name: 'Stereo indicator flag'
+          mappings:
+            - value: '0'
+              newvalue: mono
+            - value: '1'
+              newvalue: stereo
